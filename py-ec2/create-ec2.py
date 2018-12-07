@@ -10,7 +10,7 @@ keyfile = open('ec2-keypair.pem','w')
 key_pair = ec2.create_key_pair(KeyName='ec2-keypair-made-in-python')
 KeyPairOut = str(key_pair.key_material)
 keyfile.write(KeyPairOut)
-os.chmod(ec2-keypair-made-in-python.pem, 0400)
+os.chmod('ec2-keypair-made-in-python.pem', 0400)
 
 # create security group
 secgroup = ec2.create_security_group(
