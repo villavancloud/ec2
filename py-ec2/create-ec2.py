@@ -36,6 +36,6 @@ instances = ec2.create_instances(
     InstanceType='t2.micro',
     MaxCount=1,
     MinCount=1,
-    NetworkInterfaces=[{'SubnetId': subnet.id, 'DeviceIndex': 0, 'AssociatePublicIpAddress': True, 'Groups': [sec_group.group_id]}]
+    NetworkInterfaces=[{'SubnetId': subnet.id, 'DeviceIndex': 0, 'AssociatePublicIpAddress': True, 'Groups': [secgroup.group_id]}]
 )
 instances[0].wait_until_running()
