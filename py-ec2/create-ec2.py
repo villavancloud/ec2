@@ -7,7 +7,7 @@ vpc = ec2.create_vpc(CidrBlock='192.168.0.0/16')
 vpc.create_tags(Tags=[{"Key": "Name", "Value": "vpc-made-in-python"}])
 vpc.wait_until_available()
 
-keyfile = open('ec2-keypair.pem','w')
+keyfile = open('ec2-keypair-made-in-python.pem','w')
 key_pair = ec2.create_key_pair(KeyName='ec2-keypair-made-in-python')
 KeyPairOut = str(key_pair.key_material)
 keyfile.write(KeyPairOut)
