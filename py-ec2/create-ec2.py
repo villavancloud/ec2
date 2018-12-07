@@ -6,6 +6,12 @@ vpc = ec2.create_vpc(CidrBlock='192.168.0.0/16')
 vpc.create_tags(Tags=[{"Key": "Name", "Value": "vpc-made-in-python"}])
 vpc.wait_until_available()
 
+keyfile = open('ec2-keypair.pem','w')
+key_pair = ec2.create_key_pair(KeyName='ec2-keypair-made-in-python')
+KeyPairOut = str(key_pair.key_material)
+keyfile.write(KeyPairOut)
+os.chmod(ec2-keypair-made-in-python.pem, 0400)
+
 # create security group
 secgroup = ec2.create_security_group(
     GroupName='sec-group-made-in-python',
@@ -38,6 +44,7 @@ instances = ec2.create_instances(
     InstanceType='t2.micro',
     MaxCount=1,
     MinCount=1,
+    KeyName='ec2-keypair-made-in-python',
     NetworkInterfaces=[{'SubnetId': subnet.id, 'DeviceIndex': 0, 'AssociatePublicIpAddress': True, 'Groups': [secgroup.group_id]}]
 )
 instances[0].wait_until_running()
