@@ -39,7 +39,6 @@ instance = ec2.create_instances(
     MaxCount=1,
     MinCount=1,
     NetworkInterfaces=[{'SubnetId': subnet.id, 'DeviceIndex': 0, 'AssociatePublicIpAddress': True, 'Groups': [secgroup.group_id]}]
-    TagSpecifications=[
 )
 instance.wait_until_running()
 ec2.create_tags([instance.id], Tags=[{"Key": "Name", "Value": "ec2-instance-made-in-python"}])
