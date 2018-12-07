@@ -33,12 +33,12 @@ subnet.create_tags(Tags=[{"Key": "Name", "Value": "subnet-made-in-python"}])
 routetable.associate_with_subnet(SubnetId=subnet.id)
 
 # create a new security instance
-instance = ec2.create_instances(
+instances = ec2.create_instances(
     ImageId='ami-011b6930a81cd6aaf',
     InstanceType='t2.micro',
     MaxCount=1,
     MinCount=1,
     NetworkInterfaces=[{'SubnetId': subnet.id, 'DeviceIndex': 0, 'AssociatePublicIpAddress': True, 'Groups': [secgroup.group_id]}]
 )
-instance.wait_until_running()
-ec2.create_tags([instance.id], Tags=[{"Key": "Name", "Value": "ec2-instance-made-in-python"}])
+instances[0].wait_until_running()
+ec2.create_tags([instances[0].id], Tags=[{"Key": "Name", "Value": "ec2-instance-made-in-python"}])
