@@ -23,7 +23,7 @@ secgroup.authorize_ingress(
     CidrIp='0.0.0.0/0',
     IpProtocol='icmp',
     FromPort=-1,
-    ToPort=22
+    ToPort=-1
 )
 secgroup.create_tags(Tags=[{"Key": "Name", "Value": "security-group-made-in-python"}])
 
