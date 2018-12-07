@@ -19,6 +19,12 @@ secgroup = ec2.create_security_group(
     Description='new security group',
     VpcId=vpc.id
 )
+secgroup.authorize_ingress(
+    CidrIp='0.0.0.0/0',
+    IpProtocol='icmp',
+    FromPort=-1,
+    ToPort=22
+)
 secgroup.create_tags(Tags=[{"Key": "Name", "Value": "security-group-made-in-python"}])
 
 # create and attach InternetGateway
