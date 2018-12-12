@@ -1,6 +1,6 @@
 #!/bin/bash
 
-aws ec2 authorize default -P tcp -p 22 -s 0.0.0.0/0
+aws ec2 authorize-security-group-ingress --group-name default --protocol tcp --port 22 --cidr 0.0.0.0/0
 
 aws ec2 create-key-pair --key-name bashKeyPair --output json | jq -r '.KeyMaterial' > bashKeyPair.pem
 
